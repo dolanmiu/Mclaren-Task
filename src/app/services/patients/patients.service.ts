@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-
-import * as patients from 'assets/mock-api-data/patients.json';
+import { Http} from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class PatientsService {
 
-    constructor() { }
+    constructor(private http: Http) { }
 
-    public fetchPatients(): void {
-        console.log(patients);
+    public fetchPatients(): Observable<any> {
+        return this.http.get('assets/mock-api-data/patients.json');
     }
 
 }

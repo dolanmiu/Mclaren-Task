@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { PatientsService } from './services/patients/patients.service';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
-        BrowserModule
-    ],
-    providers: [
-        PatientsService
+        BrowserModule,
+        HttpModule,
+        ServicesModule
     ],
     bootstrap: [AppComponent]
 })
