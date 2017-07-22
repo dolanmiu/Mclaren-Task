@@ -1,12 +1,18 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 
+import { ActivitiesService } from './activities/activities.service';
+import { PatientsService } from './patients/patients.service';
 import { SummaryService } from './summary.service';
 
 describe('SummaryService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [SummaryService],
+            providers: [
+                SummaryService,
+                PatientsService,
+                ActivitiesService
+            ],
             imports: [
                 HttpModule
             ]
