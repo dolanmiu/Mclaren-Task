@@ -14,4 +14,13 @@ describe('PatientsService', () => {
     it('should be created', inject([PatientsService], (service: PatientsService) => {
         expect(service).toBeTruthy();
     }));
+
+    it('should get all patients', inject([PatientsService], (service: PatientsService) => {
+        service.fetchPatients().subscribe((patients) => {
+            expect(patients).toBeDefined();
+            expect(patients).toBeTruthy();
+            expect(patients).toEqual(jasmine.any(Array));
+            expect(patients.length).toBeGreaterThan(0);
+        });
+    }));
 });
