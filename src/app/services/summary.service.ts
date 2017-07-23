@@ -17,23 +17,20 @@ interface PatientWorkoutData {
 
 @Injectable()
 export class SummaryService {
-    private aggregation$: Observable<Aggregate>;
     private summary$: Observable<PatientWorkoutData[]>;
 
     constructor(private patientsService: PatientsService, private activitiesService: ActivitiesService) {
-        // Aggregation combines the summary and the patient details together
-        // Does some filtering too
-        this.aggregation$ = this.patientsService.fetchPatients()
-            .filter((patient) => patient.age >= 20 && patient.age <= 40)
-            .flatMap((patient) => {
-                return this.patientsService.fetchPatientSummary(patient.id)
-                    .toArray()
-                    .map((summary) => {
-                        return { patient, summary };
-                    });
-            });
+        const aggregation$ = this.createAggregation$();
+        this.summary$ = this.createSummary$(aggregation$);
+    }
 
-        this.summary$ = this.aggregation$.flatMap((aggregate) => {
+    public get Summary$(): Observable<PatientWorkoutData[]> {
+        return this.summary$;
+    }
+
+    private createSummary$(aggregation$: Observable<Aggregate>): Observable<PatientWorkoutData[]> {
+        // This is where it calculates the score per user
+        return aggregation$.flatMap((aggregate) => {
             return this.activitiesService.Activities$
                 .toArray()
                 .map((activities) => {
@@ -49,16 +46,26 @@ export class SummaryService {
         }).toArray();
     }
 
-    public get Summary$(): Observable<PatientWorkoutData[]> {
-        return this.summary$;
+    private createAggregation$(): Observable<Aggregate> {
+        // Aggregation combines the summary and the patient details together
+        // Does some filtering too
+        return this.patientsService.fetchPatients()
+            .filter((patient) => patient.age >= 20 && patient.age <= 40)
+            .flatMap((patient) => {
+                return this.patientsService.fetchPatientSummary(patient.id)
+                    .toArray()
+                    .map((summary) => {
+                        return { patient, summary };
+                    });
+            });
     }
 
     private getScoreFromActivity(name: string, activities: Activity[]): number {
+        // I made a 'score' because it's an easier quantitative value for future usage and calculations.
         const activity = activities.find((a) => {
             return a.activity === name;
         });
 
         return activity.score;
     }
-
 }
