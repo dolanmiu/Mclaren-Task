@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
-import { PatientsService } from './services/patients/patients.service';
+import { SummaryService } from "./services/summary.service";
 
 @Component({
     selector: 'app-root',
@@ -8,8 +9,9 @@ import { PatientsService } from './services/patients/patients.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    private summary$: Observable<any>;
 
-    constructor(patientsService: PatientsService) {
-
+    constructor(summaryService: SummaryService) {
+        this.summary$ = summaryService.Summary$;
     }
 }

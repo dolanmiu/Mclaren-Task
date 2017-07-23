@@ -1,24 +1,64 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import * as _ from 'lodash';
 
 import { ActivitiesService } from './activities/activities.service';
 import { PatientsService } from './patients/patients.service';
 
+interface Aggregate {
+    patient: Patient;
+    summary: PatientActivitySummary[];
+}
+
+interface PatientWorkoutData {
+    patient: Patient;
+    score: number;
+}
+
 @Injectable()
 export class SummaryService {
+    private aggregation$: Observable<Aggregate>;
+    private summary$: Observable<any>;
 
     constructor(private patientsService: PatientsService, private activitiesService: ActivitiesService) {
-        // this.patientsService.fetchPatients()
-        // .flatMap((patients) => {
-        //     const patients$: Observable[] = [];
-        //     patients.forEach((patient) => {
+        // Aggregation combines the summary and the patient details together
+        // Does some filtering too
+        this.aggregation$ = this.patientsService.fetchPatients()
+            .filter((patient) => patient.age >= 20 && patient.age <= 40)
+            .flatMap((patient) => {
+                return this.patientsService.fetchPatientSummary(patient.id)
+                    .toArray()
+                    .map((summary) => {
+                        return { patient, summary }
+                    });
+            });
 
-        //     });
+        this.summary$ = this.aggregation$.flatMap((aggregate) => {
+            return this.activitiesService.Activities$
+                .toArray()
+                .map((activities) => {
+                    const scores = aggregate.summary.map((data) => {
+                        return this.getScoreFromActivity(data.activity, activities) * data.minutes;
+                    });
 
-        //     Observable.forkJoin(patients$)
+                    return {
+                        patient: aggregate.patient,
+                        score: _.sum(scores)
+                    }
+                });
+        }).toArray();
+    }
 
-        //     return
-        // })
+    public get Summary$(): Observable<any> {
+        return this.summary$;
+    }
+
+    private getScoreFromActivity(name: string, activities: Activity[]) {
+        const activity = activities.find((activity) => {
+            return activity.activity === name;
+        });
+
+        return activity.score;
     }
 
 }

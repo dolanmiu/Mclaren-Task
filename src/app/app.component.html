@@ -1,10 +1,21 @@
 <div class="container">
-    <h1>Mclaren Task: Front-end recruitment challenge</h1>
+    <h1>Mclaren Task <small>Front-end recruitment challenge</small></h1>
     <p class="lead">
         A hospital is running a trial to see if their patients age 20-40 are falling below the recommended level of activity
     </p>
     <div class="row">
         <div class="col-lg-12">
+            <div class="form-group">
+                <button class="btn btn-primary">Sort</button>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                <input class="form-control" placeholder="Search...">
+            </div>
+        </div>
+        <div class="col-lg-12">
+            {{summary$ | async | json}}
             <table class="table">
                 <thead>
                     <tr>
