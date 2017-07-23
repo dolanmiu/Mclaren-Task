@@ -9,7 +9,7 @@ import { SummaryService } from "./services/summary.service";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    private summary$: Observable<any>;
+    public summary$: Observable<any>;
 
     constructor(summaryService: SummaryService) {
         this.summary$ = summaryService.Summary$;
