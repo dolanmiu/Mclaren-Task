@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 
 import { ActivitiesService } from './activities/activities.service';
@@ -22,4 +22,11 @@ describe('SummaryService', () => {
     it('should be created', inject([SummaryService], (service: SummaryService) => {
         expect(service).toBeTruthy();
     }));
+
+    it('should get a specific patient summary', async(inject([SummaryService], (service: SummaryService) => {
+        service.Summary$.subscribe((patient) => {
+            expect(patient).toBeDefined();
+            expect(patient).toBeTruthy();
+        });
+    })));
 });

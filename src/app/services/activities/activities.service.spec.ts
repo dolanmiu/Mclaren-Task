@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 
 import { ActivitiesService } from './activities.service';
@@ -17,10 +17,10 @@ describe('ActivitiesService', () => {
         expect(service).toBeTruthy();
     }));
 
-    it('should get all activities', inject([ActivitiesService], (service: ActivitiesService) => {
+    it('should get all activities', async(inject([ActivitiesService], (service: ActivitiesService) => {
         service.Activities$.subscribe((activity) => {
             expect(activity).toBeDefined();
             expect(activity).toBeTruthy();
         });
-    }));
+    })));
 });

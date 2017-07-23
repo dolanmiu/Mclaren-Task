@@ -1,4 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ServicesModule } from './services/services.module';
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
                 AppComponent
             ],
             imports: [
-                ServicesModule
+                ServicesModule,
+                FormsModule
             ]
         }).compileComponents();
     }));
