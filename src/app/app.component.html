@@ -3,6 +3,9 @@
     <p class="lead">
         A hospital is running a trial to see if their patients age 20-40 are falling below the recommended level of activity
     </p>
+    <p class="lead">
+        This is displayed by an easy score system. Each minute of vigorous excersize amounts to <code>1</code> score. Moderate excersize amounts to <code>0.5</code> score. It is recommended to have a score of <strong>150</strong>, or they are most likely <strong>unhealthy</strong>.
+    </p>
     <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
@@ -15,37 +18,27 @@
             </div>
         </div>
         <div class="col-lg-12">
-            {{summary$ | async | json}}
-            <table class="table">
+            <table class="table" *ngIf="summary$ | async; let summaries; else loading">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                    <tr *ngFor="let summary of summaries" [ngClass]="{'table-danger': summary.score < 150}">
+                        <th scope="row">{{summary.patient.id}}</th>
+                        <td>{{summary.patient.name}}</td>
+                        <td>{{summary.patient.age}}</td>
+                        <td>{{summary.score}}</td>
                     </tr>
                 </tbody>
             </table>
+            <ng-template #loading>
+                <span class="text-center">Loading</span>
+            </ng-template>
         </div>
     </div>
 </div>
