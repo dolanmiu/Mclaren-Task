@@ -38,5 +38,7 @@ Run `npm run sass-lint` to execute Sass linting
 
 ---
 
+Made with 💖 by Dolan Miu 🍆 💦 😝
+
 [travis-image]: https://travis-ci.org/dolanmiu/Mclaren-Task.svg?branch=master
 [travis-url]: https://travis-ci.org/dolanmiu/Mclaren-Task
