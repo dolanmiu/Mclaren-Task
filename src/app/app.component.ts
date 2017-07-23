@@ -50,21 +50,22 @@ export class AppComponent {
     }
 
     public searchChange(searchQuery: any): void {
+        const lowercaseSearchQuery = searchQuery.toLowerCase();
         this.searchSummary$ = this.summaryService.Summary$.map((summaries) => {
             return summaries.filter((data) => {
-                if (data.score.toString().includes(searchQuery)) {
+                if (data.score.toString().includes(lowercaseSearchQuery)) {
                     return true;
                 }
 
-                if (data.patient.id.toString().includes(searchQuery)) {
+                if (data.patient.id.toString().includes(lowercaseSearchQuery)) {
                     return true;
                 }
 
-                if (data.patient.age.toString().includes(searchQuery)) {
+                if (data.patient.age.toString().includes(lowercaseSearchQuery)) {
                     return true;
                 }
 
-                if (data.patient.name.toString().includes(searchQuery)) {
+                if (data.patient.name.toString().toLowerCase().includes(lowercaseSearchQuery)) {
                     return true;
                 }
             });
