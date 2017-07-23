@@ -1,33 +1,31 @@
 [![Build Status][travis-image]][travis-url]
 
-# MclarenTask
+# Mclaren Task
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
+> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
 
-## Development server
+## Introduction
+This project uses Travis CI to automatically run tests and automatically deploy when those tests pass. The tests include TS Linting, Sass linting, and unit tests.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project is automatically deployed to: https://dolanmiu.github.io/Mclaren-Task/
 
-## Code scaffolding
+Unit tests are the `.spec.ts` files beside their tested counterparts.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+## Running locally
 
-## Build
+1. Clone
+2. run `npm instsll`
+3. run `npm start`
+4. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+Run `npm run lint` to execute TS linting
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `npm run sass-lint` to execute Sass linting
 
 ---
 
