@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs/Rx';
 
 import { ActivitiesService } from './activities/activities.service';
 import { PatientsService } from './patients/patients.service';
@@ -29,7 +29,7 @@ export class SummaryService {
                 return this.patientsService.fetchPatientSummary(patient.id)
                     .toArray()
                     .map((summary) => {
-                        return { patient, summary }
+                        return { patient, summary };
                     });
             });
 
@@ -44,7 +44,7 @@ export class SummaryService {
                     return {
                         patient: aggregate.patient,
                         score: _.sum(scores)
-                    }
+                    };
                 });
         }).toArray();
     }
@@ -53,9 +53,9 @@ export class SummaryService {
         return this.summary$;
     }
 
-    private getScoreFromActivity(name: string, activities: Activity[]) {
-        const activity = activities.find((activity) => {
-            return activity.activity === name;
+    private getScoreFromActivity(name: string, activities: Activity[]): number {
+        const activity = activities.find((a) => {
+            return a.activity === name;
         });
 
         return activity.score;

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
-import { SummaryService } from "./services/summary.service";
+import { SummaryService } from './services/summary.service';
 
 @Component({
     selector: 'app-root',

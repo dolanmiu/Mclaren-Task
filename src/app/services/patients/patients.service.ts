@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/Rx';
 
-
 @Injectable()
 export class PatientsService {
 
@@ -25,10 +24,10 @@ export class PatientsService {
     }
 
     // Algorithm from: https://stackoverflow.com/questions/4060004/calculate-age-given-the-birth-date-in-the-format-yyyymmdd
-    private calculateAge(birthdayString: string) {
+    private calculateAge(birthdayString: string): number {
         const birthday = new Date(birthdayString);
-        var ageDifMs = Date.now() - birthday.getTime();
-        var ageDate = new Date(ageDifMs);
+        const ageDifMs = Date.now() - birthday.getTime();
+        const ageDate = new Date(ageDifMs);
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
