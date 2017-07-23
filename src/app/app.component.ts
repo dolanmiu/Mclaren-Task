@@ -9,7 +9,9 @@ import { SummaryService } from './services/summary.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    public searchSummary$: Observable<any[]>;
     public summary$: Observable<any>;
+    public searchQuery: string;
 
     constructor(private summaryService: SummaryService) {
         this.summary$ = summaryService.Summary$;
@@ -43,6 +45,16 @@ export class AppComponent {
         this.summary$ = this.summaryService.Summary$.map((summaries) => {
             return summaries.sort((a, b) => {
                 return a.patient.name > b.patient.name ? 1 : -1;
+            });
+        });
+    }
+
+    public searchChange(searchQuery: any): void {
+        this.searchSummary$ = this.summaryService.Summary$.map((summaries) => {
+            return summaries.filter((data) => {
+                if (data.score.toString() === searchQuery) {
+                    return true;
+                }
             });
         });
     }

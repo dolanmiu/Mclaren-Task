@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,6 +12,7 @@ import { ServicesModule } from './services/services.module';
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         HttpModule,
         ServicesModule
     ],
