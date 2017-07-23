@@ -20,7 +20,6 @@ describe('PatientsService', () => {
         service.fetchPatients().subscribe((patients) => {
             expect(patients).toBeDefined();
             expect(patients).toBeTruthy();
-            expect(patients).toEqual(jasmine.any(Array));
         });
     }));
 
@@ -28,7 +27,6 @@ describe('PatientsService', () => {
         service.fetchPatientSummary(1).subscribe((patient) => {
             expect(patient).toBeDefined();
             expect(patient).toBeTruthy();
-            expect(patient).toEqual(jasmine.any(Array));
         });
     }));
 

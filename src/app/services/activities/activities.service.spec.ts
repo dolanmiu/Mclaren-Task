@@ -18,9 +18,9 @@ describe('ActivitiesService', () => {
     }));
 
     it('should get all activities', inject([ActivitiesService], (service: ActivitiesService) => {
-        service.Activities$.subscribe((activities) => {
-            expect(activities).toBeDefined();
-            expect(activities).toBeTruthy();
+        service.Activities$.subscribe((activity) => {
+            expect(activity).toBeDefined();
+            expect(activity).toBeTruthy();
         });
     }));
 });
