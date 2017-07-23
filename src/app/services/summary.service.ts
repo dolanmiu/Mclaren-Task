@@ -10,11 +10,6 @@ interface Aggregate {
     summary: PatientActivitySummary[];
 }
 
-interface PatientWorkoutData {
-    patient: Patient;
-    score: number;
-}
-
 @Injectable()
 export class SummaryService {
     private summary$: Observable<PatientWorkoutData[]>;

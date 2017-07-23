@@ -9,8 +9,8 @@ import { SummaryService } from './services/summary.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    public searchSummary$: Observable<any[]>;
-    public summary$: Observable<any>;
+    public searchSummary$: Observable<PatientWorkoutData[]>;
+    public summary$: Observable<PatientWorkoutData[]>;
     public searchQuery: string;
 
     constructor(private summaryService: SummaryService) {
