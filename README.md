@@ -5,11 +5,20 @@
 > This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
 
 ## Introduction
+
 This project uses Travis CI to automatically run tests and automatically deploy when those tests pass. The tests include TS Linting, Sass linting, and unit tests.
 
 This project is automatically deployed to: https://dolanmiu.github.io/Mclaren-Task/
 
 Unit tests are the `.spec.ts` files beside their tested counterparts.
+
+## Features
+
+1. Sorting
+2. Searching
+3. Innovative score system
+4. Reactive Function Programming (RFP)
+5. VERY easy to swap mock data with real data.
 
 ## Running locally
 
