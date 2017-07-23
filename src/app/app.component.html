@@ -4,12 +4,17 @@
         A hospital is running a trial to see if their patients age 20-40 are falling below the recommended level of activity
     </p>
     <p class="lead">
-        This is displayed by an easy score system. Each minute of vigorous excersize amounts to <code>1</code> score. Moderate excersize amounts to <code>0.5</code> score. It is recommended to have a score of <strong>150</strong>, or they are most likely <strong>unhealthy</strong>.
+        This is displayed by an easy score system. Each minute of vigorous excersize amounts to <code>1</code> score. Moderate
+        excersize amounts to <code>0.5</code> score. It is recommended to have a score of <strong>150</strong>, or they are
+        most likely <strong>unhealthy</strong>.
     </p>
     <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
-                <button class="btn btn-primary">Sort</button>
+                <button class="btn btn-primary" (click)="sortById()">Sort by ID</button>
+                <button class="btn btn-primary" (click)="sortByScore()">Sort by score</button>
+                <button class="btn btn-primary" (click)="sortByAge()">Sort by age</button>
+                <button class="btn btn-primary" (click)="sortByName()">Sort by name</button>
             </div>
         </div>
         <div class="col-lg-12">

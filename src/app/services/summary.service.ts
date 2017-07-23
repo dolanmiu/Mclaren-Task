@@ -18,7 +18,7 @@ interface PatientWorkoutData {
 @Injectable()
 export class SummaryService {
     private aggregation$: Observable<Aggregate>;
-    private summary$: Observable<any>;
+    private summary$: Observable<PatientWorkoutData[]>;
 
     constructor(private patientsService: PatientsService, private activitiesService: ActivitiesService) {
         // Aggregation combines the summary and the patient details together
@@ -49,7 +49,7 @@ export class SummaryService {
         }).toArray();
     }
 
-    public get Summary$(): Observable<any> {
+    public get Summary$(): Observable<PatientWorkoutData[]> {
         return this.summary$;
     }
 
