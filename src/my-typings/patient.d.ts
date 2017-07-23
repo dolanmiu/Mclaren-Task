@@ -8,4 +8,5 @@ interface Patient {
     heightCm: number,
     weightKg: number;
     bmi: number;
+    age: number;
 }
