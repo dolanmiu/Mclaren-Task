@@ -18,11 +18,9 @@ describe('ActivitiesService', () => {
     }));
 
     it('should get all activities', inject([ActivitiesService], (service: ActivitiesService) => {
-        service.fetchActivities().subscribe((activities) => {
+        service.Activities$.subscribe((activities) => {
             expect(activities).toBeDefined();
             expect(activities).toBeTruthy();
-            expect(activities).toEqual(jasmine.any(Array));
-            expect(activities.length).toBeGreaterThan(0);
         });
     }));
 });

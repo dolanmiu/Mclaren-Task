@@ -21,25 +21,14 @@ describe('PatientsService', () => {
             expect(patients).toBeDefined();
             expect(patients).toBeTruthy();
             expect(patients).toEqual(jasmine.any(Array));
-            expect(patients.length).toBeGreaterThan(0);
         });
     }));
 
-    it('should get a specific patient summary', fakeAsync(() => {
-        inject([PatientsService], (service: PatientsService) => {
-            let patients;
-            service.fetchPatientSummary(1).subscribe((p) => {
-                patients = p;
-            });
-
-            tick();
-
-            console.log(patients);
-
-            expect(patients).toBeDefined();
-            expect(patients).toBeTruthy();
-            expect(patients).toEqual(jasmine.any(Array));
-            expect(patients.length).toBeGreaterThan(0);
+    it('should get a specific patient summary', inject([PatientsService], (service: PatientsService) => {
+        service.fetchPatientSummary(1).subscribe((patient) => {
+            expect(patient).toBeDefined();
+            expect(patient).toBeTruthy();
+            expect(patient).toEqual(jasmine.any(Array));
         });
     }));
 
