@@ -52,7 +52,19 @@ export class AppComponent {
     public searchChange(searchQuery: any): void {
         this.searchSummary$ = this.summaryService.Summary$.map((summaries) => {
             return summaries.filter((data) => {
-                if (data.score.toString() === searchQuery) {
+                if (data.score.toString().includes(searchQuery)) {
+                    return true;
+                }
+
+                if (data.patient.id.toString().includes(searchQuery)) {
+                    return true;
+                }
+
+                if (data.patient.age.toString().includes(searchQuery)) {
+                    return true;
+                }
+
+                if (data.patient.name.toString().includes(searchQuery)) {
                     return true;
                 }
             });
